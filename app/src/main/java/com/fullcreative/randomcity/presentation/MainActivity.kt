@@ -1,4 +1,4 @@
-package com.fullcreative.randomcity
+package com.fullcreative.randomcity.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,10 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.fullcreative.randomcity.presentation.SplashScreen
+import com.fullcreative.randomcity.presentation.splash.SplashScreen
 import com.fullcreative.randomcity.ui.theme.RandomCityTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

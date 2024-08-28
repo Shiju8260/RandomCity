@@ -1,4 +1,4 @@
-package com.fullcreative.randomcity.presentation
+package com.fullcreative.randomcity.presentation.splash
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
