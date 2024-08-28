@@ -10,6 +10,7 @@ activityCompose = "1.9.1"
 composeBom = "2023.08.00"
 navigationCompose = "2.7.7"
 daggerHilt = "2.44"
+googleAccompanist = "0.27.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-navigation-compose= { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 dagger-hilt= { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler= { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
+google-accompanist= { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "googleAccompanist" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -22,8 +22,8 @@ class CityProducerUseCase @Inject constructor(
     operator fun invoke(): Flow<CityAndColor> =
         flow {
             while (true) {
-                emit(CityAndColor(city = cities.random(), color = colors.random()))
                 delay(5000L)
+                emit(CityAndColor(city = cities.random(), color = colors.random()))
             }
         }
 }

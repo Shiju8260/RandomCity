@@ -1,4 +1,4 @@
-package com.fullcreative.randomcity.presentation.splash
+package com.fullcreative.randomcity.presentation.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,24 +14,15 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun SplashScreen() {
+fun MainScreen() {
     val systemUiController = rememberSystemUiController()
 
     LaunchedEffect(key1 = Unit) {
         systemUiController.setSystemBarsColor(
-            color = Color.Black
+            color = Color.White
         )
     }
+    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Black)) {
-        Text(
-            text = "Full Creative",
-            modifier = Modifier.align(Alignment.Center),
-            fontSize = 24.sp,
-            color = Color.White,
-            fontWeight = FontWeight.Bold
-        )
     }
 }
