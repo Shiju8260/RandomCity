@@ -21,7 +21,11 @@ fun SplashScreen(cityAndColor: CityAndColor? = null, navController: NavControlle
 
     LaunchedEffect(cityAndColor) {
         cityAndColor?.let {
-            navController.navigate("main")
+            navController.navigate("main"){
+                popUpTo(0){
+                    inclusive = true
+                }
+            }
         }
     }
 
