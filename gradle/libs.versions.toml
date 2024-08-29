@@ -11,6 +11,8 @@ composeBom = "2023.08.00"
 navigationCompose = "2.7.7"
 daggerHilt = "2.44"
 googleAccompanist = "0.27.0"
+googleMaps = "6.1.0"
+gson = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +33,8 @@ androidx-navigation-compose= { group = "androidx.navigation", name = "navigation
 dagger-hilt= { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 dagger-hilt-compiler= { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
 google-accompanist= { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "googleAccompanist" }
+google-maps-compose= { group = "com.google.maps.android", name = "maps-compose", version.ref = "googleMaps" }
+google-gson= { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

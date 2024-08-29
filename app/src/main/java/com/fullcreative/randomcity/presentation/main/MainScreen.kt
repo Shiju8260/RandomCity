@@ -1,5 +1,7 @@
 package com.fullcreative.randomcity.presentation.main
 
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -20,12 +22,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.gson.Gson
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(cityAndColor: CityAndColor? = null, viewModel: MainScreenViewModel = viewModel()) {
+fun MainScreen(cityAndColor: CityAndColor? = null, viewModel: MainScreenViewModel = viewModel(),navController: NavController) {
     val systemUiController = rememberSystemUiController()
 
     LaunchedEffect(key1 = Unit) {
@@ -72,7 +76,10 @@ fun MainScreen(cityAndColor: CityAndColor? = null, viewModel: MainScreenViewMode
                             headlineColor = emission.color,
                             supportingColor = Color.Black
                         ),
-                        modifier = Modifier.padding(vertical = 10.dp)
+                        modifier = Modifier.padding(vertical = 10.dp).clickable {
+                            val userJson = Uri.encode(Gson().toJson(emission))
+                            navController.navigate("details/$userJson")
+                        }
                     )
                 }
             }

@@ -1,3 +1,5 @@
 package com.fullcreative.randomcity.domain.models
 
-data class City(val name:String ="")
+import com.google.android.gms.maps.model.LatLng
+
+data class City(val name: String = "", val latLng: LatLng? = null)
