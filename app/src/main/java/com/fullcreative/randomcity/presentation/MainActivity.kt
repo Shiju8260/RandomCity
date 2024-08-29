@@ -7,18 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.fullcreative.randomcity.presentation.main.MainScreen
 import com.fullcreative.randomcity.presentation.splash.SplashScreen
 import com.fullcreative.randomcity.ui.theme.RandomCityTheme
@@ -34,36 +31,25 @@ class MainActivity : ComponentActivity() {
         viewModel.startProducer()
         setContent {
             RandomCityTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppNavHost(innerPadding, viewModel)
-                }
+
+                    AppNavHost(viewModel)
             }
         }
     }
 }
 
 @Composable
-fun AppNavHost(innerPadding: PaddingValues, mainViewModel: MainViewModel) {
+fun AppNavHost(mainViewModel: MainViewModel) {
     val navController = rememberNavController()
     val state by mainViewModel.state.collectAsState()
-    val cityAndColor = remember {
-        mutableStateOf(CityAndColor())
-    }
-    LaunchedEffect(state.cityAndColor) {
-        state.cityAndColor?.let {
-            cityAndColor.value = it
-            val currentRoute = navController.currentBackStackEntry?.destination?.route
-            if (currentRoute == "splash") {
-                navController.navigate("main")
-            }
-        }
-    }
+
     NavHost(
         navController = navController,
-        startDestination = "splash"
+        startDestination = "splash",
+        modifier = Modifier.fillMaxSize()
     ) {
-        composable("splash") { SplashScreen() }
-        composable("main") { MainScreen(cityAndColor.value) }
+        composable("splash") { SplashScreen(state.cityAndColor, navController) }
+        composable("main") { MainScreen(state.cityAndColor) }
     }
 }
 

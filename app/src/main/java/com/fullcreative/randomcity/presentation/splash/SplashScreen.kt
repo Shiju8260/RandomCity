@@ -11,11 +11,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(cityAndColor: CityAndColor? = null, navController: NavController) {
     val systemUiController = rememberSystemUiController()
+
+    LaunchedEffect(cityAndColor) {
+        cityAndColor?.let {
+            navController.navigate("main")
+        }
+    }
 
     LaunchedEffect(key1 = Unit) {
         systemUiController.setSystemBarsColor(
@@ -23,9 +31,11 @@ fun SplashScreen() {
         )
     }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Black)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
         Text(
             text = "Full Creative",
             modifier = Modifier.align(Alignment.Center),

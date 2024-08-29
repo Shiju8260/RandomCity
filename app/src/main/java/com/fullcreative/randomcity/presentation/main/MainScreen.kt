@@ -25,7 +25,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(cityAndColor: CityAndColor, viewModel: MainScreenViewModel = viewModel()) {
+fun MainScreen(cityAndColor: CityAndColor? = null, viewModel: MainScreenViewModel = viewModel()) {
     val systemUiController = rememberSystemUiController()
 
     LaunchedEffect(key1 = Unit) {
@@ -34,10 +34,10 @@ fun MainScreen(cityAndColor: CityAndColor, viewModel: MainScreenViewModel = view
         )
     }
     LaunchedEffect(cityAndColor) {
-        viewModel.onEvent(MainScreenEvents.UpdateCityList(cityAndColor))
+        cityAndColor?.let {
+            viewModel.onEvent(MainScreenEvents.UpdateCityList(it))
+        }
     }
-
-
 
     Scaffold(
         topBar = {
@@ -52,9 +52,10 @@ fun MainScreen(cityAndColor: CityAndColor, viewModel: MainScreenViewModel = view
         },
         content = { ip ->
             val state by viewModel.state.collectAsState()
-            LazyColumn(modifier = Modifier
-                .padding(ip)
-                .padding(16.dp)) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(ip).padding(16.dp)
+            ) {
                 itemsIndexed(state.cityAndColorList) { index, emission ->
                     ListItem(
                         headlineContent = {
@@ -64,13 +65,14 @@ fun MainScreen(cityAndColor: CityAndColor, viewModel: MainScreenViewModel = view
                                 fontWeight = FontWeight.Bold
                             )
                         },
+                        shadowElevation = 5.dp,
                         supportingContent = { Text(text = emission.time) },
                         colors = ListItemDefaults.colors(
-                            containerColor = emission.color,
-                            headlineColor = Color.White,
-                            supportingColor = Color.White
+                            containerColor = Color.White,
+                            headlineColor = emission.color,
+                            supportingColor = Color.Black
                         ),
-                        modifier = Modifier.padding(top = 10.dp)
+                        modifier = Modifier.padding(vertical = 10.dp)
                     )
                 }
             }

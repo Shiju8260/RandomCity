@@ -1,13 +1,10 @@
 package com.fullcreative.randomcity.presentation.main
 
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.fullcreative.randomcity.domain.useCase.CityProducerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,14 +17,17 @@ class MainScreenViewModel @Inject constructor(
 
     fun onEvent(event: MainScreenEvents) {
         when (event) {
-            is MainScreenEvents.UpdateCityList ->{
-               _state.value.cityAndColorList.add(event.cityAndColor)
+            is MainScreenEvents.UpdateCityList -> {
+                _state.value.cityAndColorList.add(event.cityAndColor)
+                val sortedList = _state.value.cityAndColorList.sortedBy { it.city.name }
+                _state.value = _state.value.copy(cityAndColorList = sortedList.toMutableStateList())
             }
-            is MainScreenEvents.GetSavedCityList ->{
+
+            is MainScreenEvents.GetSavedCityList -> {
 
             }
         }
 
-        }
+    }
 
 }
