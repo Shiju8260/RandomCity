@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,12 +31,10 @@ class MainScreenViewModel @Inject constructor(
             }
 
             is MainScreenEvents.GetSavedCityList -> {
-                viewModelScope.launch {
-                    withContext(Dispatchers.IO) {
-                        val cityList = cityRepository.getCityList()
-                        val sortedList = cityList.sortedBy { it.city.name }
-                        _state.value.cityAndColorList.addAll(sortedList)
-                    }
+                viewModelScope.launch(Dispatchers.IO) {
+                    val cityList = cityRepository.getCityList()
+                    val sortedList = cityList.sortedBy { it.city.name }
+                    _state.value.cityAndColorList.addAll(sortedList)
                 }
             }
         }
