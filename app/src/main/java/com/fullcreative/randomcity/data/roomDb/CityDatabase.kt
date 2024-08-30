@@ -12,5 +12,5 @@ import com.fullcreative.randomcity.domain.models.CityAndColor
 )
 @TypeConverters(Converters::class)
 abstract class CityDatabase : RoomDatabase() {
-    abstract fun CityDao(): CityDao
+    abstract fun getCityDao(): CityDao
 }

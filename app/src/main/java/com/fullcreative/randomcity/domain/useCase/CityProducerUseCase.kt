@@ -1,6 +1,7 @@
 package com.fullcreative.randomcity.domain.useCase
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.fullcreative.randomcity.domain.models.City
 import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.fullcreative.randomcity.ui.theme.Green
@@ -30,11 +31,10 @@ class CityProducerUseCase @Inject constructor(
         flow {
             while (true) {
                 delay(5000L)
-                val city = cities.random()
                 emit(
                     CityAndColor(
                         city = cities.random(),
-                        color = colors.random(),
+                        color = colors.random().toArgb(),
                         time = simpleDateFormat.format(
                             Date()
                         )
@@ -43,3 +43,5 @@ class CityProducerUseCase @Inject constructor(
             }
         }
 }
+
+fun Int.hexToString() = String.format("#%06X", 0xFFFFFF and this)

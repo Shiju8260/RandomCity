@@ -1,6 +1,5 @@
 package com.fullcreative.randomcity.presentation.details
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -17,9 +16,11 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 
 @Composable
-fun DetailsScreen(cityAndColor: CityAndColor,onBackPress: () -> Unit) {
+fun DetailsScreen(cityAndColor: CityAndColor, onBackPress: () -> Unit) {
     val cityLatLng = remember {
-        mutableStateOf(LatLng(cityAndColor.city.latitude,cityAndColor.city.longitude) ?: LatLng(1.35, 103.87))
+        mutableStateOf(
+            LatLng(cityAndColor.city.latitude, cityAndColor.city.longitude)
+        )
     }
     val cityMarkerState = remember { mutableStateOf(MarkerState(position = cityLatLng.value)) }
     val cameraPositionState = remember {
@@ -36,10 +37,10 @@ fun DetailsScreen(cityAndColor: CityAndColor,onBackPress: () -> Unit) {
         onBackPress()
     }
     LaunchedEffect(cityAndColor) {
-            cityLatLng.value = LatLng(cityAndColor.city.latitude,cityAndColor.city.longitude)
-            cityMarkerState.value = MarkerState(position = cityLatLng.value)
-            cameraPositionState.value =
-                CameraPositionState(position = CameraPosition.fromLatLngZoom(cityLatLng.value, 10f))
+        cityLatLng.value = LatLng(cityAndColor.city.latitude, cityAndColor.city.longitude)
+        cityMarkerState.value = MarkerState(position = cityLatLng.value)
+        cameraPositionState.value =
+            CameraPositionState(position = CameraPosition.fromLatLngZoom(cityLatLng.value, 10f))
 
     }
 

@@ -28,10 +28,10 @@ class AppModule {
     @Provides
     fun provideCityDao(
         cityDb: CityDatabase
-    ) = cityDb.CityDao()
+    ) = cityDb.getCityDao()
 
     @Provides
-    fun provideBookRepository(
+    fun provideCityRepository(
         cityDao: CityDao
     ): CityRepository = CityRepositoryImpl(
         cityDao = cityDao

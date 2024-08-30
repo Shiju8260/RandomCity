@@ -1,19 +1,13 @@
 package com.fullcreative.randomcity.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -26,22 +20,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.fullcreative.randomcity.presentation.details.DetailsScreen
 import com.fullcreative.randomcity.presentation.main.MainScreen
 import com.fullcreative.randomcity.presentation.splash.SplashScreen
 import com.fullcreative.randomcity.ui.theme.RandomCityTheme
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -75,10 +64,11 @@ fun AppNavHost(mainViewModel: MainViewModel) {
 
     LaunchedEffect(navBackStackEntry) {
         val currentRoute = navBackStackEntry?.destination?.route
-        when(currentRoute){
+        when (currentRoute) {
             "splash" -> {
                 showAppBar.value = false
             }
+
             else -> {
                 showAppBar.value = true
             }
@@ -86,7 +76,7 @@ fun AppNavHost(mainViewModel: MainViewModel) {
     }
     Scaffold(
         topBar = {
-            if(showAppBar.value) {
+            if (showAppBar.value) {
                 TopAppBar(
                     title = {
                         Text(
@@ -95,7 +85,7 @@ fun AppNavHost(mainViewModel: MainViewModel) {
                         )
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = selectedCity.value?.color ?: Color.Black,
+                        containerColor = Color(selectedCity.value?.color ?: Color.Black.toArgb()),
                         titleContentColor = Color.White
                     )
                 )
@@ -116,7 +106,8 @@ fun AppNavHost(mainViewModel: MainViewModel) {
                         selectedCity.value = it
                     }, clearCityState = {
                         mainViewModel.onEvent(MainActivityEvents.ClearCityState)
-                    }) }
+                    })
+                }
                 composable("details") {
                     selectedCity.value?.let {
                         DetailsScreen(it, onBackPress = {

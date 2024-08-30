@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.fullcreative.randomcity.domain.models.CityAndColor
@@ -35,7 +36,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @Composable
 fun MainScreen(
     cityAndColor: CityAndColor? = null,
-    viewModel: MainScreenViewModel = viewModel(),
+    viewModel: MainScreenViewModel = hiltViewModel(),
     navController: NavController,
     onSelectedCity: (cityAndColor: CityAndColor) -> Unit,
     clearCityState: () -> Unit
@@ -46,6 +47,7 @@ fun MainScreen(
         systemUiController.setSystemBarsColor(
             color = Color.White
         )
+        viewModel.onEvent(MainScreenEvents.GetSavedCityList)
     }
     LaunchedEffect(cityAndColor) {
         cityAndColor?.let {
@@ -138,7 +140,7 @@ fun MainDetailScreen(
                 supportingContent = { Text(text = emission.time) },
                 colors = ListItemDefaults.colors(
                     containerColor = Color.White,
-                    headlineColor = emission.color,
+                    headlineColor = Color(emission.color),
                     supportingColor = Color.Black
                 ),
                 modifier = Modifier

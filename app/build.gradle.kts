@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation)
     implementation(libs.google.accompanist)
     implementation(libs.google.maps.compose)
     implementation(libs.google.gson)
