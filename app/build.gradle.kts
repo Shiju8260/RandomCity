@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -6,6 +8,13 @@ plugins {
     id("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
+
+// Load local.properties file
+val localProperties = Properties()
+localProperties.load(rootProject.file("local.properties").inputStream())
+
+// Get the API key from local.properties
+val apiKey: String = localProperties.getProperty("API_KEY")
 
 android {
     namespace = "com.fullcreative.randomcity"
@@ -22,6 +31,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        manifestPlaceholders["apiKey"] = apiKey
+
     }
 
     buildTypes {
