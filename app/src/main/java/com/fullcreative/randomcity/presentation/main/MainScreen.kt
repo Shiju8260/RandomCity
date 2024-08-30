@@ -1,9 +1,7 @@
 package com.fullcreative.randomcity.presentation.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row

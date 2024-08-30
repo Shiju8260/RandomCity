@@ -19,7 +19,7 @@ import com.google.maps.android.compose.MarkerState
 @Composable
 fun DetailsScreen(cityAndColor: CityAndColor,onBackPress: () -> Unit) {
     val cityLatLng = remember {
-        mutableStateOf(cityAndColor.city.latLng ?: LatLng(1.35, 103.87))
+        mutableStateOf(LatLng(cityAndColor.city.latitude,cityAndColor.city.longitude) ?: LatLng(1.35, 103.87))
     }
     val cityMarkerState = remember { mutableStateOf(MarkerState(position = cityLatLng.value)) }
     val cameraPositionState = remember {
@@ -36,12 +36,11 @@ fun DetailsScreen(cityAndColor: CityAndColor,onBackPress: () -> Unit) {
         onBackPress()
     }
     LaunchedEffect(cityAndColor) {
-        cityAndColor.city.latLng?.let { latLng ->
-            cityLatLng.value = latLng
-            cityMarkerState.value = MarkerState(position = latLng)
+            cityLatLng.value = LatLng(cityAndColor.city.latitude,cityAndColor.city.longitude)
+            cityMarkerState.value = MarkerState(position = cityLatLng.value)
             cameraPositionState.value =
-                CameraPositionState(position = CameraPosition.fromLatLngZoom(latLng, 10f))
-        }
+                CameraPositionState(position = CameraPosition.fromLatLngZoom(cityLatLng.value, 10f))
+
     }
 
     GoogleMap(
