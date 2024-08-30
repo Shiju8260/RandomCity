@@ -94,4 +94,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.google.dagger.hilt.testing)
+    testImplementation(libs.androidx.arch.core.testing)
+    testImplementation(libs.bundles.mockito.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

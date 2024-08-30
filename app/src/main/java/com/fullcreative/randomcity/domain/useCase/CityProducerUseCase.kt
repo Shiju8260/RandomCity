@@ -43,5 +43,3 @@ class CityProducerUseCase @Inject constructor(
             }
         }
 }
-
-fun Int.hexToString() = String.format("#%06X", 0xFFFFFF and this)
