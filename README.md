@@ -1,7 +1,7 @@
 # Random City
 
 ### About the project
-Every 5 seconds city producer will produce the next value with random City and Color.
+Every 5 seconds city producer will produce the next value with random City and Color. Able to view the emitted city in google map.
 
 ### Tools Used
 
