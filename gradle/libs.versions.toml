@@ -21,6 +21,7 @@ kotlinxcoroutinesTest = "1.8.1"
 mockitoCore = "4.5.1"
 mockitoKotlin = "4.1.0"
 mockitoInline = "3.11.2"
+ksp = "2.0.20-1.0.24"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -60,6 +61,8 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
 
 [bundles]
 mockito-testing = ["mockito-core-testing", "mockito-kotlin-testing", "mockito-inline"]

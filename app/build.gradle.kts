@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.compose.compiler)
     id("kotlin-kapt")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.google.ksp)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
