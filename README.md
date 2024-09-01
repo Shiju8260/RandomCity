@@ -20,7 +20,7 @@ The Random City app uses below libraries and tools to build efficient applicatio
 - [Jetpack Compose](https://developer.android.com/compose) Modern toolkit for Android UI
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) 
 - [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) for data stream
-- Architecture components (**Navigation, ViewModel, Data Binding etc.**)
+- Architecture components (**Navigation, ViewModel etc.**)
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)  for dependency injection
 - [Maps](https://developers.google.com/maps/documentation/android-sdk/maps-compose)
 - [Room](https://developer.android.com/training/data-storage/room)  for saving data in local
