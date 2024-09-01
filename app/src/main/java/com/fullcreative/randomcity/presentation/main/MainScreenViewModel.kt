@@ -34,7 +34,8 @@ class MainScreenViewModel @Inject constructor(
                 viewModelScope.launch(Dispatchers.IO) {
                     val cityList = cityRepository.getCityList()
                     val sortedList = cityList.sortedBy { it.city.name }
-                    _state.value.cityAndColorList.addAll(sortedList)
+                    _state.value.cityAndColorList.addAll(sortedList.toMutableStateList())
+                    _state.value = _state.value.copy(getFromDB = true)
                 }
             }
         }

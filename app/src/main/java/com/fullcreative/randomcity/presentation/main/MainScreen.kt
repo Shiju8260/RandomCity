@@ -42,12 +42,14 @@ fun MainScreen(
     clearCityState: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
-
+    val state by viewModel.state.collectAsState()
     LaunchedEffect(key1 = Unit) {
         systemUiController.setSystemBarsColor(
             color = Color.White
         )
-        viewModel.onEvent(MainScreenEvents.GetSavedCityList)
+        if(!state.getFromDB) {
+            viewModel.onEvent(MainScreenEvents.GetSavedCityList)
+        }
     }
     LaunchedEffect(cityAndColor) {
         cityAndColor?.let {
