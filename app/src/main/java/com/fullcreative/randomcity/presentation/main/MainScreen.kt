@@ -2,6 +2,7 @@ package com.fullcreative.randomcity.presentation.main
 
 import android.content.Context
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.fullcreative.randomcity.domain.models.CityAndColor
 import com.fullcreative.randomcity.presentation.details.DetailsScreen
@@ -47,7 +47,7 @@ fun MainScreen(
         systemUiController.setSystemBarsColor(
             color = Color.White
         )
-        if(!state.getFromDB) {
+        if (!state.getFromDB) {
             viewModel.onEvent(MainScreenEvents.GetSavedCityList)
         }
     }
@@ -127,7 +127,7 @@ fun MainDetailScreen(
     val state by viewModel.state.collectAsState()
     LazyColumn(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(16.dp).background(Color.White)
     ) {
         itemsIndexed(state.cityAndColorList) { index, emission ->
             ListItem(
